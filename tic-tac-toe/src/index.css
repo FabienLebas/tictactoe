@@ -1,11 +1,16 @@
+header{
+  background-color: grey;
+}
 body {
   margin: 0;
-  padding: 0;
+  padding-top: 0;
   font-family: sans-serif;
 }
 table {
-  padding-top: 30px;
+  padding-top: 20px;
   margin:auto;
+  margin-top: 50px;
+  margin-bottom: 10px;
 }
 td{
   font-size:3em;
@@ -14,4 +19,11 @@ td{
 }
 button{
   margin-top: 30px;
+}
+.jumbotron{
+  background-color: white;
+}
+.end{
+  animation: App-logo-spin 3s linear;
+  animation-iteration-count: 2;
 }

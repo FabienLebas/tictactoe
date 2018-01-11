@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import GameBoard from './GameBoard.js';
 
@@ -45,7 +44,7 @@ class App extends Component {
   end(){
     if(this.state.victoryEnd){
       return (
-        <h1>Victoire !</h1>
+        <h1 className="end">Victoire !</h1>
       )
     } else if (this.state.drawEnd){
       return (
@@ -54,8 +53,19 @@ class App extends Component {
     }
   }
 
+  testAlreadyPlayedCell(rowName, columnIndex){
+    if(this.state.game[rowName][columnIndex] !== "_"){
+      return true;
+    }
+    return false;
+  }
+
   handleInput = (rowName, columnIndex) => {
     const newBoard = this.state.game;
+
+    if(this.testAlreadyPlayedCell(rowName, columnIndex)){
+      return;
+    }
     newBoard[rowName][columnIndex] = this.state.player;
 
     Object.keys(this.state.game).forEach(row => {
@@ -119,16 +129,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Tic Tac Toe</h1>
-        </header>
-        <table>
-          <GameBoard board={this.state.game} handleInput={this.handleInput}/>
-        </table>
-        {this.end()}
-        <button onClick={() => {this.reload()}}>Recommencer</button>
+      <div className="App jumbotron">
+        <nav className="navbar fixed-top navbar-dark bg-dark">
+          <span className="App-title navbar-brand mb-0 h1">Tic Tac Toe</span>
+        </nav>
+          <table>
+            <GameBoard board={this.state.game} handleInput={this.handleInput}/>
+          </table>
+          {this.end()}
+          <button className="btn btn-success" onClick={() => {this.reload()}}>Recommencer</button>
       </div>
     );
   }
